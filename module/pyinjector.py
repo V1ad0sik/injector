@@ -46,15 +46,7 @@ class InjectorError(PyInjectorError):
 
 class InjectorPermissionError(InjectorError):
     def __str__(self):
-        return (super().__str__() +
-                '\nFailed attaching to process due to permission error.\n'
-                'This is most likely due to ptrace scope limitations applied to the kernel for security purposes.\n'
-                'Possible solutions:\n'
-                ' - Rerun as root\n'
-                ' - Temporarily remove ptrace scope limitations using '
-                '`echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope`\n'
-                ' - Persistently remove ptrace scope limitations by editing /etc/sysctl.d/10-ptrace.conf\n'
-                'More details can be found here: https://stackoverflow.com/q/19215177/2907819')
+        return (super().__str__()
 
 
 def call_c_func(func: Callable[..., int], *args: Any,
